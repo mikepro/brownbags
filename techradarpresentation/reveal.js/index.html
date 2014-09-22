@@ -30,6 +30,21 @@
 				document.getElementsByTagName( 'head' )[0].appendChild( link );
 			}
 		</script>
+		<script type="text/javascript" src="angular.min.js"></script>
+		<script type="text/javascript">
+			function controller($model)
+			{
+				$model.width = 300;
+				$model.increaseWidth = function()
+				{
+					$model.width = $model.width +10;
+				}
+				$model.decreaseWidth = function()
+				{
+					$model.width = $model.width -10;
+				}
+			}
+		</script>
 
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
@@ -66,8 +81,84 @@
                     <h2>A start</h2>
                     <a href="http://mikepro.github.io/InteractiveTechRadar/app/"><img src="img/mytechradar.jpg"/></img></a>
                 </section>
+                <section>
+                    <h2>The tech</h2>
+			<ul>
+				<li>
+					AngularJs
+				</li>
+				<li>
+					SVG
+				</li>
+			</ul>
+                </section>
+		<section>
+			<h2>Page model</h2>
+<pre>
+<code>
+<input type="text" ng-model="name"></input>
+<p>Hello there {{name}}</p>
+</code>
+</pre>
+			<div ng-app>
+				<input ng-model="name"/>
+				<p>Hello there {{name}}</p>
 			</div>
+		</section>
+		<section>
+			<section>
+			<h2>Basic svg</h2>
+			<pre>
+<code>
+<svg height="110" width="400">
+  <rect width="300" height="100"></rect>
+</svg>
+</code>
+			</pre>
+			<svg height="110" width="400">
+			  <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"></rect>
+			</svg>
+			</section>
+			
+			<section>
+				<h2>Circle</h2>
+<pre>
+	<code>
+<svg height="100" width="100">
+  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+</svg>
+	</code>
+</pre>
+				<svg height="100" width="100">
+				  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+				</svg>
+			</section>
+			<section>
+				<h2>Path</h2>
+				<pre>
+<code>
+<svg height="210" width="400">
+  <path d="M150 0 L75 200 L225 200 Z" />
+</svg>
+</code>
+				</pre>
 
+				<svg height="210" width="400">
+				  <path d="M150 0 L75 200 L225 200 Z" />
+				</svg>
+		</section>
+</section>
+		<section>
+			<h2>Binding a model to angular</h2>
+			<div ng-app ng-controller="controller">
+				<svg height="110" width="400">
+				  <rect ng-attr-width="{{width}}" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"></rect>
+				</svg>
+			</div>
+			<button ng-click="increaseWidth()">Increase width</button>
+			<button ng-click="decreaseWidth()">Decrease width</button>
+		</section>
+			</div>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
@@ -82,10 +173,9 @@
 				progress: true,
 				history: true,
 				center: true,
-                transition: 'fade',
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
 
 				// Parallax scrolling
 				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
