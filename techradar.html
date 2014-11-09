@@ -32,18 +32,32 @@
 		</script>
 		<script type="text/javascript" src="techradarpresentation/reveal.js/angular.min.js"></script>
 		<script type="text/javascript">
-			function controller($scope)
-			{
-				$scope.width = 600;
-				$scope.increaseWidth = function()
-				{
+			angular.module('simpleExample',[])
+			.controller('simpleController',function(){});
+			
+			angular.module('svgModelExample',[]).
+			controller('svgController',function($scope){
+				$scope.width = 30;
+				$scope.height = 30;
+				$scope.increaseWidth = function(){
 					$scope.width = $scope.width +10;
+				};
+				$scope.decreaseWidth = function(){
+					$scope.width =$scope.width -10;
 				}
-				$scope.decreaseWidth = function()
-				{
-					$scope.width = $scope.width -10;
+				$scope.increaseHeight = function(){
+					$scope.height = $scope.height +10;
 				}
-			}
+				$scope.decreaseHeight = function(){
+					$scope.height = $scope.height -10;
+				}
+			});
+			angular.element(document).ready(function(){
+				angular.bootstrap(document.getElementById("svgmodelexample"),['svgModelExample']);
+			});
+			angular.element(document).ready(function(){
+				angular.bootstrap(document.getElementById("simpleexample"),['simpleExample']);
+			});
 		</script>
 
 		<!--[if lt IE 9]>
@@ -62,6 +76,7 @@
 					<p>
 						<small>Michael Watson</small>
 					</p>
+					<p><a href="http://mikepro.github.io/brownbags/techradar.html">http://mikepro.github.io/brownbags/techradar.html</a></p>
 				</section>
                 <section>
                     <h2>So much to learn and evaluate</h2>
@@ -72,7 +87,11 @@
                 </section>
                 <section>
                     <h2>What is a tech radar?</h2>
-                    <img src="techradarpresentation/reveal.js/img/techradar.jpg"></img>
+                    <a href="http://www.thoughtworks.com/radar"><img src="techradarpresentation/reveal.js/img/techradar.jpg"></img></a>
+                </section>
+                <section>
+                    <h2>CTM tech radar</h2>
+		    Link in here
                 </section>
                 <section>
                     <h2>A start</h2>
@@ -97,7 +116,7 @@
 <p>Hello there {{name}}</p>
 </code>
 </pre>
-			<div ng-app ng-controller="controller">
+			<div id="simpleexample" ng-controller="simpleController">
 				<input ng-model="name"/>
 				<p>Hello there {{name}}</p>
 			</div>
@@ -146,23 +165,54 @@
 		</section>
 </section>
 		<section>
-			<h2>Binding a model to angular</h2>
+			<h2>Binding an angular model to svg</h2>
 <pre>
 <code>
-<div >
-	<svg height="110" width="400">
-	  <rect ng-attr-width="{{width}}" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"></rect>
-	</svg>
-</div>
+<svg height="50" width="600">
+  <rect ng-attr-width="{{width}}" height="{{height}}" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"></rect>
+</svg>
+
+<p>
+	<button ng-click="increaseWidth()">Increase width</button>
+	<button ng-click="decreaseWidth()">Decrease width</button>
+	Width {{width}}
+</p>
+<p>
+	<button ng-click="increaseHeight()">Increase height</button>
+	<button ng-click="decreaseHeight()">Decrease height</button>
+	Height {{height}}
+</p>
 <button ng-click="increaseWidth">Increase width</button>
 <button ng-click="decreaseWidth()">Decrease width</button>
 </code>
 </pre>
+<div id="svgmodelexample" ng-controller="svgController">
+	<svg height="50" width="600">
+	  <rect ng-attr-width="{{width}}" height="{{height}}" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"></rect>
+	</svg>
+	<p>
+		<button ng-click="increaseWidth()">Increase width</button>
+		<button ng-click="decreaseWidth()">Decrease width</button>
+		Width {{width}}
+	</p>
+	<p>
+		<button ng-click="increaseHeight()">Increase height</button>
+		<button ng-click="decreaseHeight()">Decrease height</button>
+		Height {{height}}
+	</p>
+</div>
+
 		</section>
 		<section>
 			<h1>Questions</h1>
 		</section>
-			</div>
+		<section>
+			<h1>Linnks</h1>
+			<ul>
+				<li>Presentation: <a href="http://mikepro.github.io/brownbags/techradar.htm">http://mikepro.github.io/brownbags/techradar.htm</a></li>
+				<li>Sample project: <a href="https://github.com/mikepro/InteractiveTechRadar">https://github.com/mikepro/InteractiveTechRadar</a></li>
+			</ul>
+		</section>
 		</div>
 
 		<script src="techradarpresentation/reveal.js/lib/js/head.min.js"></script>
