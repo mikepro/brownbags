@@ -32,16 +32,16 @@
 		</script>
 		<script type="text/javascript" src="angular.min.js"></script>
 		<script type="text/javascript">
-			function controller($model)
+			function controller($scope)
 			{
-				$model.width = 300;
-				$model.increaseWidth = function()
+				$scope.width = 600;
+				$scope.increaseWidth = function()
 				{
-					$model.width = $model.width +10;
+					$scope.width = $scope.width +10;
 				}
-				$model.decreaseWidth = function()
+				$scope.decreaseWidth = function()
 				{
-					$model.width = $model.width -10;
+					$scope.width = $scope.width -10;
 				}
 			}
 		</script>
@@ -71,9 +71,6 @@
                     <img src="img/crazy.jpg"></img>
                 </section>
                 <section>
-                    <h2>My vision</h2>
-                </section>
-                <section>
                     <h2>What is a tech radar?</h2>
                     <img src="img/techradar.jpg"></img>
                 </section>
@@ -93,14 +90,14 @@
 			</ul>
                 </section>
 		<section>
-			<h2>Page model</h2>
+			<h2>Bindings</h2>
 <pre>
 <code>
 <input type="text" ng-model="name"></input>
 <p>Hello there {{name}}</p>
 </code>
 </pre>
-			<div ng-app>
+			<div ng-app ng-controller="controller">
 				<input ng-model="name"/>
 				<p>Hello there {{name}}</p>
 			</div>
@@ -150,13 +147,20 @@
 </section>
 		<section>
 			<h2>Binding a model to angular</h2>
-			<div ng-app ng-controller="controller">
-				<svg height="110" width="400">
-				  <rect ng-attr-width="{{width}}" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"></rect>
-				</svg>
-			</div>
-			<button ng-click="increaseWidth()">Increase width</button>
-			<button ng-click="decreaseWidth()">Decrease width</button>
+<pre>
+<code>
+<div >
+	<svg height="110" width="400">
+	  <rect ng-attr-width="{{width}}" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"></rect>
+	</svg>
+</div>
+<button ng-click="increaseWidth">Increase width</button>
+<button ng-click="decreaseWidth()">Decrease width</button>
+</code>
+</pre>
+		</section>
+		<section>
+			<h1>Questions</h1>
 		</section>
 			</div>
 		</div>
