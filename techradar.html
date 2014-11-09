@@ -204,6 +204,29 @@
 
 		</section>
 		<section>
+			<h1>Code</h1>
+<pre>
+<code>
+controller('svgController',function($scope){
+	$scope.width = 30;
+	$scope.height = 30;
+	$scope.increaseWidth = function(){
+		$scope.width = $scope.width +10;
+	};
+	$scope.decreaseWidth = function(){
+		$scope.width =$scope.width -10;
+	}
+	$scope.increaseHeight = function(){
+		$scope.height = $scope.height +10;
+	}
+	$scope.decreaseHeight = function(){
+		$scope.height = $scope.height -10;
+	}
+});
+</code>
+</pre>
+		</section>
+		<section>
 			<h1>Questions</h1>
 		</section>
 		<section>
