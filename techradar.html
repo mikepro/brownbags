@@ -1,1 +1,202 @@
-techradarpresentation/reveal.js/index.html
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Personal Radar</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="techradarpresentation/reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="techradarpresentation/reveal.js/css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="techradarpresentation/reveal.js/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+		<script type="text/javascript" src="techradarpresentation/reveal.js/angular.min.js"></script>
+		<script type="text/javascript">
+			function controller($scope)
+			{
+				$scope.width = 600;
+				$scope.increaseWidth = function()
+				{
+					$scope.width = $scope.width +10;
+				}
+				$scope.decreaseWidth = function()
+				{
+					$scope.width = $scope.width -10;
+				}
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="techradarpresentation/reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Personal Radar</h1>
+					<p>
+						<small>Michael Watson</small>
+					</p>
+				</section>
+                <section>
+                    <h2>So much to learn and evaluate</h2>
+                    <img src="techradarpresentation/reveal.js/img/infooverload.jpg"></img>
+                </section>
+                <section>
+                    <img src="techradarpresentation/reveal.js/img/crazy.jpg"></img>
+                </section>
+                <section>
+                    <h2>What is a tech radar?</h2>
+                    <img src="techradarpresentation/reveal.js/img/techradar.jpg"></img>
+                </section>
+                <section>
+                    <h2>A start</h2>
+                    <a href="http://mikepro.github.io/InteractiveTechRadar/app/"><img src="techradarpresentation/reveal.js/img/mytechradar.jpg"/></img></a>
+                </section>
+                <section>
+                    <h2>The tech</h2>
+			<ul>
+				<li>
+					AngularJs
+				</li>
+				<li>
+					SVG
+				</li>
+			</ul>
+                </section>
+		<section>
+			<h2>Bindings</h2>
+<pre>
+<code>
+<input type="text" ng-model="name"></input>
+<p>Hello there {{name}}</p>
+</code>
+</pre>
+			<div ng-app ng-controller="controller">
+				<input ng-model="name"/>
+				<p>Hello there {{name}}</p>
+			</div>
+		</section>
+		<section>
+			<section>
+			<h2>Basic svg</h2>
+			<pre>
+<code>
+<svg height="110" width="400">
+  <rect width="300" height="100"></rect>
+</svg>
+</code>
+			</pre>
+			<svg height="110" width="400">
+			  <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"></rect>
+			</svg>
+			</section>
+			
+			<section>
+				<h2>Circle</h2>
+<pre>
+	<code>
+<svg height="100" width="100">
+  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+</svg>
+	</code>
+</pre>
+				<svg height="100" width="100">
+				  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+				</svg>
+			</section>
+			<section>
+				<h2>Path</h2>
+				<pre>
+<code>
+<svg height="210" width="400">
+  <path d="M150 0 L75 200 L225 200 Z" />
+</svg>
+</code>
+				</pre>
+
+				<svg height="210" width="400">
+				  <path d="M150 0 L75 200 L225 200 Z" />
+				</svg>
+		</section>
+</section>
+		<section>
+			<h2>Binding a model to angular</h2>
+<pre>
+<code>
+<div >
+	<svg height="110" width="400">
+	  <rect ng-attr-width="{{width}}" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"></rect>
+	</svg>
+</div>
+<button ng-click="increaseWidth">Increase width</button>
+<button ng-click="decreaseWidth()">Decrease width</button>
+</code>
+</pre>
+		</section>
+		<section>
+			<h1>Questions</h1>
+		</section>
+			</div>
+		</div>
+
+		<script src="techradarpresentation/reveal.js/lib/js/head.min.js"></script>
+		<script src="techradarpresentation/reveal.js/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'techradarpresentation/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'techradarpresentation/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'techradarpresentation/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'techradarpresentation/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'techradarpresentation/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'techradarpresentation/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
