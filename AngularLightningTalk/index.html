@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Drawing with AngularJS</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		<style>
+			button
+			{
+				font-size:20pt;
+			}
+		</style>
+	</head>
+
+	<body ng-app="presentation">
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Drawing with Angular js</h1>
+					<p>
+						<small>Michael Watson @comparethemarket.com</small>
+					</p>
+				</section>
+				<section>
+					<h2>A tech radar</h2>
+					<p>
+						<a href="http://mikepro.github.io/InteractiveTechRadar/app/" target="_blank"><img src="mytechradar.png"></img></a>
+					</p>
+				</section>
+				<section>
+					<h2>Meet SVG</h2>
+					<img src="./car.svg"></img>
+					<p><a href="http://www.w3.org/TR/SVG/">SVG spec</a></p>
+				</section>
+				
+				<section>
+					<h2>Basic svg</h2>
+<pre>
+<code>
+<svg height="110" width="400">
+  <rect width="300" height="100" 
+  		stroke="black" stroke-width="3" fill="white"></rect>
+</svg>
+</code>
+</pre>
+					<svg height="110" width="400">
+			  			<rect width="300" height="100" stroke="black" stroke-width="3" fill="white"></rect>
+					</svg>
+			</section>
+			<section>
+				<h2>Circle</h2>
+<pre>
+	<code>
+<svg height="100" width="100">
+  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="white" />
+</svg>
+	</code>
+</pre>
+				<svg height="100" width="100">
+				  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="white" />
+				</svg>
+			</section>
+			<section>
+				<h2>Path</h2>
+				<pre>
+<code>
+<svg height="210" width="400">
+  <path d="M150 0 L75 200 L225 200 Z" stroke="black" stroke-width="3" fill="white" />
+</svg>
+</code>
+				</pre>
+
+				<svg height="210" width="400">
+				  <path d="M150 0 L75 200 L225 200 Z" stroke="black" stroke-width="3" fill="white" />
+				</svg>
+			</section>
+			
+			<section>
+			<h1>svg is part of the dom :-)</h1>
+		</section>
+			
+		<section ng-controller="modelBinding">
+			<h2>Binding a model to angular</h2>
+<pre ng-non-bindable>
+<code>
+<div >
+	<svg height="110" width="400">
+	  <rect ng-attr-width="{{width}}" height="100"  stroke="black" stroke-width="3" fill="white"></rect>
+	</svg>
+</div>
+<button ng-click="increaseWidth()">Increase width</button>
+<button ng-click="decreaseWidth()">Decrease width</button>
+</code>
+</pre>
+			<svg height="110" width="400">
+	  			<rect ng-attr-width="{{width}}" height="100"  stroke="black" stroke-width="3" fill="white"></rect>
+			</svg>
+			<p>Width: {{width}}</p>
+			<p>
+				<button ng-click="increaseWidth()">+ Increase width</button>
+				<button ng-click="decreaseWidth()">- Decrease width</button>
+			</p>
+		</section>
+		<section>
+			<h2>JS</h2>
+<pre class="js">
+<code>
+controller('modelBinding',function($scope){
+	$scope.width = 150;
+	$scope.increaseWidth = function()
+	{
+		$scope.width = $scope.width += 15;
+	}
+	
+	$scope.decreaseWidth = function()
+	{
+		$scope.width = $scope.width -= 15;
+	}
+})
+</code>
+</pre>
+		</section>
+		<section ng-controller="complicatedExample">
+			<h1>Another example</h1>
+			<svg width="500" height="320">
+				 <circle cx="250" cy="150" r="10" stroke="black" stroke-width="3" fill="white" />
+				 <circle cx="250" cy="150" r="130" stroke="white" stroke-width="3" fill="none" />
+				 <circle ng-repeat="blip in blips" ng-attr-cx="{{blip.x}}" ng-attr-cy="{{blip.y}}"
+				 					stroke-width="3" fill="white" r="10"/>
+			</svg>
+			<p>
+				<button ng-click="addBlip()">Add blip</button>
+				<button ng-click="removeBlip()">Remove blip</button>
+			</p>
+		</section>
+		<section>
+			<h1>Markup</h1>
+			<pre class="html" ng-non-bindable>
+				<code>
+<svg width="500" height="320">
+	<circle cx="250" cy="150" r="10" stroke="black" stroke-width="3" fill="white" />
+	<circle cx="250" cy="150" r="130" stroke="white" stroke-width="3" fill="none" />
+	<circle ng-repeat="blip in blips" ng-attr-cx="{{blip.x}}" ng-attr-cy="{{blip.y}}"
+	stroke-width="3" fill="white" r="10"/>
+</svg>
+				</code>
+			</pre>
+		</section>
+		<section>
+			<h1>JS</h1>
+			<pre>
+				<code>
+.controller('complicatedExample',function($scope){
+	var center = {x:250, y:150};
+	var radius = 130;
+	
+	function convertDegToRad(deg){
+        return (deg * Math.PI)/180;
+    }
+    
+	function Blip(x,y)
+	{
+		var self = this;
+		self.x = x;
+		self.y = y;
+	}	
+	$scope.blips = [];
+	
+	$scope.addBlip = function(){
+		var degree = $scope.blips.length * 20;
+		var radians = convertDegToRad(degree);
+		var sine = Math.sin(radians);
+		var cosine = Math.cos(radians);
+		var newCords = {x: center.x + (sine* radius),
+			y: center.y - (cosine * radius)};
+		$scope.blips.push(new Blip(newCords.x, newCords.y));
+		
+	};
+	$scope.removeBlip = function(){
+		$scope.blips.pop();
+	};
+})
+				</code>
+			</pre>
+		</section>
+		<section>
+			<h1>Abstracting</h1>
+			<pre>
+				<code>
+app.factory('SvgPathBuilder',[function(){
+    return function PathBuilder()
+    {
+    	...
+        self.MoveTo = function(x,y)
+        {
+            commands.push("M "+x+" "+y);
+            return this;
+        }
+        
+        self.LineTo = function (x,y)
+        {
+            commands.push("L " +x+" " + y);
+            return this;
+        }
+        self.Build = function()
+        {
+            var closePath = '';
+            if(isClosePath ==true)
+            {
+                closePath = ' Z';
+            }
+            return commands.join(' ')+closePath;
+        }
+    }
+}]);
+				</code>
+			</pre>
+		</section>
+		<section>
+			<pre>
+				<code>
+app.factory('SvgPathFactory',['SvgPathBuilder',function(pathBuilder){
+    return {
+        CreateTriangle: function(center, width, height)
+        {
+            var halfWidth = width / 2;
+            var halfHeight = height / 2;
+
+            var triangle = new pathBuilder().MoveTo(center.x - halfWidth, center.y + halfHeight)
+                .LineTo(center.x,center.y - halfHeight)
+                .LineTo(center.x + halfWidth, center.y + halfHeight)
+                .Build();
+            return triangle;
+        }}}]);
+				</code>
+			</pre>
+		</section>
+		
+		<section>
+			<h1>Summary</h1>
+		</section>
+		<section>
+			<h1>Questions</h1>
+		</section>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+document.addEventListener("DOMContentLoaded", init, false);
+ 
+function init() 
+{
+	var cblocks = document.querySelectorAll("pre code");
+				
+	if(cblocks.length) {
+		for(var i=0, len=cblocks.length; i<len; i++) {
+			var dom = cblocks[i];
+			var html = dom.innerHTML;
+			html = html.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+			dom.innerHTML = html;
+		}
+		}
+		}
+	
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'none', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js" type="text/javascript">
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular-route.js" type="text/javascript"></script>
+		<script src="./presentation.js" type="text/javascript"></script>
+	</body>
+</html>
